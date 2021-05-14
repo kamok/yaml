@@ -1,0 +1,10 @@
+cd:
+  profile: multizoneClusterSystem
+  config:
+    all:
+      envVars:
+        MY_VAR: 1
+    production:
+      envVars:
+        MY_VAR: 2
+slackChannel: "w3-rre"

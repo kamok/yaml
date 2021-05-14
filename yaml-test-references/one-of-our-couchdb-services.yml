@@ -1,0 +1,29 @@
+---
+cd:
+  profile: multizoneClusterSystem
+  couchdb: true
+  config:
+    all:
+      envVars:
+        COUCHDB_PORT: 6984
+        COUCHDB_PROTOCOL: https
+        COUCHDB_DATABASE_NAME: 'w3-rre-metadata-service-metadata-system'
+        VERIFY_COUCHDB_TLS: true
+        APP_LOG_LEVEL: info
+    test:
+      envVars:
+        VERIFY_COUCHDB_TLS: false
+        APP_LOG_LEVEL: debug
+        COUCHDB_BASE_URL: couchdb.internal
+        COUCHDB_USERNAME: vault:v1:7kmhBe7Wsd+iHR6df7s6HHe3YW3owMb7qeKJbK2SzZjd
+        COUCHDB_PASSWORD: vault:v1:NoHMHZ5YT9lMp+kaXtvajga7VFvIeGMx4EEE0NFj97P0C+gr/ZiPHSFvs3cGnhLrBcU4tyGOlXliNz2oS7GmhGuFQ5AZ
+    stage:
+      envVars:
+        COUCHDB_BASE_URL: couchdb.internal
+        COUCHDB_USERNAME: vault:v1:7kmhBe7Wsd+iHR6df7s6HHe3YW3owMb7qeKJbK2SzZjd
+        COUCHDB_PASSWORD: vault:v1:fd60/dNXy9IGC3I0q4ZOIEn+vZkC94y+BSiquN9u0WQzDB/w2XCdFgw7TjonC9ZxRCAVuZoC144tUk25K2ap1v5EaBDpBmFV7ZOXpDlneVXbIk90
+    production:
+      envVars:
+        COUCHDB_BASE_URL: couchdb.w3-rre-system.svc.cluster.local
+        COUCHDB_USERNAME: vault:v1:Oyt9GKLcRH1LQdq+iLJz7glHVX6buY+tbqp2tGhfLIomwiNApr4K3Q==
+        COUCHDB_PASSWORD: vault:v1:hU/0s7cCuixjMWEqhrrZCMYgSsm+6cbMLuEZrAu2pFXn3wQ9/ZByR42Nzfdkl7rf7SRmKKuc+yuEn+HvwqCgDw==

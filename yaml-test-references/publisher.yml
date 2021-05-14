@@ -1,0 +1,20 @@
+version: v1
+builder: npm
+type: user-interface
+
+ci:
+  npmRepos:
+    - scope: w3
+      registry: "https://na.artifactory.swg-devops.com/artifactory/api/npm/chq-dwe-w3-rre-npm-local"
+    - scope: w3-publisher
+      registry: "https://na.artifactory.swg-devops.com/artifactory/api/npm/chq-dwe-w3-rre-npm-local"
+    - scope: w3-rre
+      registry: "https://na.artifactory.swg-devops.com/artifactory/api/npm/chq-dwe-w3-rre-npm-local"
+    - scope: w3ds
+      registry: "https://na.artifactory.swg-devops.com/artifactory/api/npm/chq-dwe-w3ds-npm-local"
+    - scope: w3-notifications
+      registry: "https://na.artifactory.swg-devops.com/artifactory/api/npm/chq-dwe-w3-rre-npm-local"
+    - scope: w3-ecosystem
+      registry: "https://na.artifactory.swg-devops.com/artifactory/api/npm/chq-dwe-w3-rre-npm-local"
+
+slackChannel: "w3pages-ops"

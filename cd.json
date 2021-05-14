@@ -1,0 +1,82 @@
+{
+  "$id": "foo",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RRE Build Yml",
+  "description": "Validations",
+  "type": "object",
+  "properties": {
+    "ci": {
+      "type": "object",
+      "description": "WIP"
+    },
+    "cd": {
+      "type": "object",
+      "properties": {
+        "profile": {
+          "type": "string",
+          "enum": [
+            "multizoneClusterSystem"
+          ]
+        },
+        "couchdb": {
+          "type": "boolean",
+          "description": "Whether you are using couchdb or not"
+        },
+        "config": {
+          "type": "object",
+          "description": "https://github.ibm.com/w3-rre/w3-rre/wiki/Configuration-and-Secrets#overview",
+          "properties": {
+            "all": {
+              "type": "object",
+              "description": "Key / value pairs common to most or all environments to be defined once. Can be overridden by all other envs",
+              "properties": {
+                "envVars": {
+                  "type": "object"
+                }
+              }
+            },
+            "production": {
+              "type": "object",
+              "properties": {
+                "envVars": {
+                  "type": "object"
+                }
+              }
+            },
+            "stage": {
+              "type": "object",
+              "properties": {
+                "envVars": {
+                  "type": "object"
+                }
+              }
+            },
+            "test": {
+              "type": "object",
+              "properties": {
+                "envVars": {
+                  "type": "object"
+                }
+              }
+            },
+            "branch": {
+              "type": "object",
+              "description": "Key / value pairs that will only be set in a branch deployment (not main or master)",
+              "properties": {
+                "envVars": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "required": [ "profile", "config" ]
+    },
+    "slackChannel": {
+      "type": "string",
+      "description": "Slack channel where you want notifications to go to. No #",
+      "pattern": "^(?!#).+"
+    }
+  }
+}
