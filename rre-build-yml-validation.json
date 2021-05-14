@@ -5,6 +5,42 @@
   "description": "Validations",
   "type": "object",
   "properties": {
+    "version": {
+      "type": "string",
+      "enum": [
+        "v1"
+      ],
+      "description": "The version of the automation to execute"
+    },
+    "builder": {
+      "type": "string",
+      "enum": [
+        "npm"
+      ],
+      "description": "Specific package manager to use"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "microservice",
+        "user-interface",
+        "library",
+        "cronjob"
+      ],
+      "description": "Artifact type to build: https://github.ibm.com/w3-rre/w3-rre/wiki/Artifact-Types"
+    },
+    "baseVersion": {
+      "type": "string",
+      "description": "The semantic version number to use as the base for versioned build artifacts using the MAJOR.MINOR.PATCH syntax. The baseVersion is optional and defaults to '1.0.0'. Reference: https://regexr.com/39s32",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(-(0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(\\.(0|[1-9]\\*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*)?(\\+[0-9a-zA-Z-]+(\\.[0-9a-zA-Z-]+)*)?$"
+    },
+    "productionBranches": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "A list of branches which trigger production builds. The productionBranches element is optional and defaults to a list with master as the only item."
+    },
     "ci": {
       "type": "object",
       "description": "WIP"
@@ -78,5 +114,6 @@
       "description": "Slack channel where you want notifications to go to. No #",
       "pattern": "^(?!#).+"
     }
-  }
+  },
+  "required": ["builder", "type"]
 }

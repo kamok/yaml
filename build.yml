@@ -1,3 +1,8 @@
+version: v1
+type: microservice
+builder: npm
+baseVersion: "1.0.0-alpha"
+productionBranches: [ 'master']
 cd:
   profile: multizoneClusterSystem
   config:
@@ -7,4 +12,4 @@ cd:
     production:
       envVars:
         MY_VAR: 2
-slackChannel: "w3-rre"
+slackChannel: w3-rre
