@@ -41,6 +41,22 @@
       },
       "description": "A list of branches which trigger production builds. The productionBranches element is optional and defaults to a list with master as the only item."
     },
+    "artifactory": {
+      "type": "object",
+      "description": "https://github.ibm.com/w3-rre/w3-rre/wiki/General-Configuration#artifactory",
+      "properties": {
+        "apiKey": {
+          "type": "string",
+          "description": "The apiKey value should be encrypted with Vault using the key ARTIFACTORY_APIKEY",
+          "pattern": "^(vault:).+$"
+        },
+        "username": {
+          "type": "string",
+          "description": "The username should also be encrypted with Vault, and it should use the key ARTIFACTORY_USERNAME",
+          "pattern": "^(vault:).+$"
+        }
+      }
+    },
     "ci": {
       "type": "object",
       "description": "WIP"
