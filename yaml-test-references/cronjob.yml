@@ -1,0 +1,15 @@
+---
+builder: npm
+type: cronjob
+
+cd:
+  schedule: "0 0 * * *"
+  serviceAccountName: undeploy-pod-cleanup
+  instances: 1
+  profile: multizoneClusterSystem
+  config:
+    all:
+      envVars:
+        NODE_AFFINITY: true
+        APP_LOG_LEVEL: "debug"
+        CR_TTL_MINUTES: "1440"

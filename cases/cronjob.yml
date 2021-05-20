@@ -1,5 +1,5 @@
 version: v1
-type: library
+type: cronjob
 builder: npm
 baseVersion: "1.0.0-alpha"
 productionBranches: [ 'master']
@@ -14,11 +14,8 @@ cd:
         MY_VAR: 1
     production:
       envVars:
-        Foo: 22
-    branch:
-      envVars:
-        Bar: 'rofl'
-  schedules:
+        Foo: 1
+  schedule:
     name: 'fooName'
     timing: 'fooTiming'
 slackChannel: w3-rre

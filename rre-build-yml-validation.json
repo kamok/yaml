@@ -15,7 +15,8 @@
     "builder": {
       "type": "string",
       "enum": [
-        "npm"
+        "npm",
+        "poetry"
       ],
       "description": "Specific package manager to use"
     },
@@ -39,7 +40,7 @@
       "items": {
         "type": "string"
       },
-      "description": "A list of branches which trigger production builds. The productionBranches element is optional and defaults to a list with master as the only item."
+      "description": "A list of branches which trigger production builds. The productionBranches element is optional and defaults to a list with master and main as the only item."
     },
     "artifactory": {
       "type": "object",
@@ -79,51 +80,38 @@
           "description": "https://github.ibm.com/w3-rre/w3-rre/wiki/Configuration-and-Secrets#overview",
           "properties": {
             "all": {
-              "type": "object",
               "description": "Key / value pairs common to most or all environments to be defined once. Can be overridden by all other envs",
-              "properties": {
-                "envVars": {
-                  "type": "object"
-                }
-              }
+              "$ref": "#/definitions/cdConfigEnvVars"
             },
             "production": {
-              "type": "object",
-              "properties": {
-                "envVars": {
-                  "type": "object"
-                }
-              }
+              "$ref": "#/definitions/cdConfigEnvVars"
             },
             "stage": {
-              "type": "object",
-              "properties": {
-                "envVars": {
-                  "type": "object"
-                }
-              }
+              "$ref": "#/definitions/cdConfigEnvVars"
             },
             "test": {
-              "type": "object",
-              "properties": {
-                "envVars": {
-                  "type": "object"
-                }
-              }
+              "$ref": "#/definitions/cdConfigEnvVars"
             },
             "branch": {
-              "type": "object",
-              "description": "Key / value pairs that will only be set in a branch deployment (not main or master)",
-              "properties": {
-                "envVars": {
-                  "type": "object"
-                }
-              }
+              "$ref": "#/definitions/cdConfigEnvVars"
             }
           }
+        },
+        "schedule": {
+          "type": "string",
+          "description": "TODO: Example: 0 0 * * *"
+        },
+        "serviceAccountName": {
+          "type": "string",
+          "description": "TODO: Make required(?) when type is cronjob"
+        },
+        "instances": {
+          "type": "number",
+          "description": "TODO: this required? This allowed?"
         }
       },
-      "required": [ "profile", "config" ]
+      "required": ["profile", "config"],
+      "additionalProperties": false
     },
     "slackChannel": {
       "type": "string",
@@ -131,5 +119,19 @@
       "pattern": "^(?!#).+"
     }
   },
-  "required": ["builder", "type"]
+  "required": ["builder", "type"],
+  "definitions": {
+    "cdConfigEnvVars": {
+      "$id": "#cdConfigEnvVars",
+      "type": "object",
+      "properties": {
+        "envVars": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "required": ["envVars"]
+    }
+  },
+  "additionalProperties": false
 }
