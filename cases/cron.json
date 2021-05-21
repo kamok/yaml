@@ -1,0 +1,6 @@
+{
+  "builder": "npm",
+  "type": "cronjob",
+  "version": "v1",
+  "baseVersion": "1.0.0-alpha"
+}

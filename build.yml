@@ -18,7 +18,5 @@ cd:
     branch:
       envVars:
         Bar: 'rofl'
-  schedules:
-    name: 'fooName'
-    timing: 'fooTiming'
+  schedule: 'xxxxxx'
 slackChannel: w3-rre

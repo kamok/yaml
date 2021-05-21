@@ -1,0 +1,94 @@
+{
+  "$id": "foo",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RRE Build Yml",
+  "description": "Definitions for top level stuff",
+  "type": "object",
+  "definitions": {
+    "base": {
+      "type": "object",
+      "properties": {
+        "slackChannel": {
+          "type": "string",
+          "description": "Slack channel where you want notifications to go to. No #",
+          "pattern": "^(?!#).+"
+        },
+        "productionBranches": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "A list of branches which trigger production builds. The productionBranches element is optional and defaults to a list with master and main as the only item."
+        },
+        "baseVersion": {
+          "type": "string",
+          "description": "The semantic version number to use as the base for versioned build artifacts using the MAJOR.MINOR.PATCH syntax. The baseVersion is optional and defaults to '1.0.0'. Reference: https://regexr.com/39s32",
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(-(0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(\\.(0|[1-9]\\*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*)?(\\+[0-9a-zA-Z-]+(\\.[0-9a-zA-Z-]+)*)?$"
+        },
+        "artifactory": {
+          "type": "object",
+          "description": "https://github.ibm.com/w3-rre/w3-rre/wiki/General-Configuration#artifactory",
+          "properties": {
+            "apiKey": {
+              "type": "string",
+              "description": "The apiKey value should be encrypted with Vault using the key ARTIFACTORY_APIKEY",
+              "pattern": "^(vault:).+$"
+            },
+            "username": {
+              "type": "string",
+              "description": "The username should also be encrypted with Vault, and it should use the key ARTIFACTORY_USERNAME",
+              "pattern": "^(vault:).+$"
+            }
+          }
+        },
+        "ci": {"type": "object", "description": "WIP"},
+        "cd": {
+          "description": "Continuous Deployment Parameters",
+          "type": "object",
+          "properties": {
+            "profile": {"type": "string", "enum": ["multizoneClusterSystem"]},
+            "couchdb": {
+              "type": "boolean",
+              "description": "Whether you are using couchdb or not"
+            },
+            "config": {
+              "type": "object",
+              "description": "https://github.ibm.com/w3-rre/w3-rre/wiki/Configuration-and-Secrets#overview",
+              "properties": {
+                "all": {
+                  "description": "Key / value pairs common to most or all environments to be defined once. Can be overridden by all other envs",
+                  "$ref": "#/definitions/cdConfigEnvVars"
+                },
+                "production": {"$ref": "#/definitions/cdConfigEnvVars"},
+                "stage": {"$ref": "#/definitions/cdConfigEnvVars"},
+                "test": {"$ref": "#/definitions/cdConfigEnvVars"},
+                "branch": {"$ref": "#/definitions/cdConfigEnvVars"}
+              }
+            },
+            "serviceAccountName": {
+              "type": "string",
+              "description": "TODO: Make required(?) when type is cronjob"
+            },
+            "instances": {
+              "type": "number",
+              "description": "TODO: this required? This allowed?"
+            }
+          },
+          "required": ["profile", "config"]
+        },
+        "version": {
+          "type": "string",
+          "enum": ["v1"],
+          "description": "The version of the automation to execute"
+        }
+      }
+    },
+    "cdConfigEnvVars": {
+      "$id": "#cdConfigEnvVars",
+      "type": "object",
+      "properties": {"envVars": {"type": "object"}},
+      "additionalProperties": false,
+      "required": ["envVars"]
+    }
+  }
+}
