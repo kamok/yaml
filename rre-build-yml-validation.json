@@ -21,10 +21,13 @@
       "description": "Artifact type to build: https://github.ibm.com/w3-rre/w3-rre/wiki/Artifact-Types"
     }
   },
-  "required": ["builder", "type", "version"],
+  "required": ["builder", "type"],
   "allOf": [
     {
-      "if": {"properties": {"type": {"const": "cronjob"}}},
+      "if": {
+        "properties": {"type": {"const": "cronjob"}},
+        "required": ["type"]
+      },
       "then": {
         "required": ["cd"],
         "allOf": [{"$ref": "defs.json#/definitions/base"}],
@@ -39,7 +42,10 @@
       }
     },
     {
-      "if": {"properties": {"type": {"const": "library"}}},
+      "if": {
+        "properties": {"type": {"const": "library"}},
+        "required": ["type"]
+      },
       "then": {"allOf": [{"$ref": "defs.json#/definitions/base"}]}
     }
   ]

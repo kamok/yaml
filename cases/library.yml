@@ -1,0 +1,13 @@
+version: v1
+type: library
+builder: npm
+baseVersion: "1.0.0-alpha"
+productionBranches: ['master']
+artifactory:
+  apiKey: vault:1o0
+  username: vault:1
+slackChannel: 'w3-aaa'
+ci:
+  npmRepos:
+    - scope: 'foo'
+      registry: 'foo'

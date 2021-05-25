@@ -15,9 +15,7 @@
         },
         "productionBranches": {
           "type": "array",
-          "items": {
-            "type": "string"
-          },
+          "items": {"type": "string"},
           "description": "A list of branches which trigger production builds. The productionBranches element is optional and defaults to a list with master and main as the only item."
         },
         "baseVersion": {
@@ -41,7 +39,11 @@
             }
           }
         },
-        "ci": {"type": "object", "description": "WIP"},
+        "ci": {
+          "type": "object",
+          "description": "WIP",
+          "properties": {"npmRepos": {"$ref": "#/definitions/npmRepos"}}
+        },
         "cd": {
           "description": "Continuous Deployment Parameters",
           "type": "object",
@@ -75,11 +77,6 @@
             }
           },
           "required": ["profile", "config"]
-        },
-        "version": {
-          "type": "string",
-          "enum": ["v1"],
-          "description": "The version of the automation to execute"
         }
       }
     },
@@ -89,6 +86,23 @@
       "properties": {"envVars": {"type": "object"}},
       "additionalProperties": false,
       "required": ["envVars"]
+    },
+    "npmRepos": {"type": "array", "items": {"$ref": "#/definitions/npmRepo"}},
+    "npmRepo": {
+      "type": "object",
+      "properties": {
+        "scope": {
+          "type": "string",
+          "description": "Can not start with @",
+          "pattern": "^(?!@).+"
+        },
+        "registry": {
+          "type": "string",
+          "description": "Can not end with /",
+          "pattern": ".*(?<!/)$"
+        }
+      },
+      "required": ["scope", "registry"]
     }
   }
 }

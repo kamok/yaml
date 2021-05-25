@@ -2,7 +2,7 @@ version: v1
 type: cronjob
 builder: npm
 baseVersion: "1.0.0-alpha"
-productionBranches: [ 'master']
+productionBranches: ['master']
 artifactory:
   apiKey: vault:1o0
   username: vault:1
@@ -15,5 +15,5 @@ cd:
     production:
       envVars:
         Foo: 1
-  schedule: 'xxxxxx'
+  schedule: 'xx'
 slackChannel: 'w3-aaa'
