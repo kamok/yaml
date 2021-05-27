@@ -37,7 +37,8 @@
               "description": "The username should also be encrypted with Vault, and it should use the key ARTIFACTORY_USERNAME",
               "pattern": "^(vault:).+$"
             }
-          }
+          },
+          "additionalProperties": false
         },
         "ci": {
           "type": "object",
