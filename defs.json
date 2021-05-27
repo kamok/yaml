@@ -1,6 +1,6 @@
 {
   "$id": "foo",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schema": "https://json-schema.org/draft-07/schema",
   "title": "RRE Build Yml",
   "description": "Definitions for top level stuff",
   "type": "object",
@@ -81,7 +81,6 @@
       }
     },
     "cdConfigEnvVars": {
-      "$id": "#cdConfigEnvVars",
       "type": "object",
       "properties": {"envVars": {"type": "object"}},
       "additionalProperties": false,
