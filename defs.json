@@ -50,8 +50,9 @@
           "properties": {
             "profile": {"type": "string", "enum": ["multizoneClusterSystem"]},
             "couchdb": {
-              "type": "boolean",
-              "description": "Whether you are using couchdb or not"
+              "type": "string",
+              "description": "Whether you are using couchdb or not",
+              "enum": ["true", "false"]
             },
             "config": {
               "type": "object",
