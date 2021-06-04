@@ -17,7 +17,7 @@
     },
     "type": {
       "type": "string",
-      "enum": ["microservice", "user-interface", "library", "cronjob"],
+      "enum": ["library", "cronjob", "microservice", "grpc-microservice", "user-interface", "process"],
       "description": "Artifact type to build: https://github.ibm.com/w3-rre/w3-rre/wiki/Artifact-Types"
     }
   },
@@ -52,6 +52,27 @@
     {
       "if": {
         "properties": {"type": {"const": "library"}},
+        "required": ["type"]
+      },
+      "then": {"allOf": [{"$ref": "defs.json#/definitions/base"}]}
+    },
+    {
+      "if": {
+        "properties": {"type": {"const": "microservice"}},
+        "required": ["type"]
+      },
+      "then": {"allOf": [{"$ref": "defs.json#/definitions/base"}]}
+    },
+    {
+      "if": {
+        "properties": {"type": {"const": "grpc-microservice"}},
+        "required": ["type"]
+      },
+      "then": {"allOf": [{"$ref": "defs.json#/definitions/base"}]}
+    },
+    {
+      "if": {
+        "properties": {"type": {"const": "user-interface"}},
         "required": ["type"]
       },
       "then": {"allOf": [{"$ref": "defs.json#/definitions/base"}]}
