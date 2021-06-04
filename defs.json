@@ -49,11 +49,19 @@
           "description": "Continuous Deployment Parameters",
           "type": "object",
           "properties": {
-            "profile": {"type": "string", "enum": ["multizoneClusterSystem"]},
+            "profile": {
+              "type": "string",
+              "enum": ["standard", "productionOnly"]
+            },
             "couchdb": {
               "type": "string",
               "description": "Whether you are using couchdb or not",
               "enum": ["true", "false"]
+            },
+            "cassandra": {
+              "type": "string",
+              "description": "Whether you are using cassandra or not",
+              "enum": ["yes"]
             },
             "config": {
               "type": "object",

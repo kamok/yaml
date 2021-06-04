@@ -2,14 +2,30 @@
 builder: npm
 type: cronjob
 
+
 cd:
   schedule: "0 0 * * *"
   serviceAccountName: undeploy-pod-cleanup
   instances: 1
-  profile: multizoneClusterSystem
+  profile: standard
   config:
     all:
       envVars:
         NODE_AFFINITY: true
         APP_LOG_LEVEL: "debug"
         CR_TTL_MINUTES: "1440"
+  schedules:
+    - name: first
+      timing: "0 0 2 * *"
+      script: first.sh
+    - name: second
+      timing: "0 0 3 * *"
+      script: app.js
+# .js, .sh
+# org name x
+# repo name y
+# branch name z
+# 'x-y-z-first'
+
+# write a description for schedules/ name to tell them there is a 63 char limit
+# for org + repo + branch + name
