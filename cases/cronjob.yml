@@ -6,9 +6,13 @@ productionBranches: ['master']
 artifactory:
   apiKey: vault:1o0
   username: vault:1
+ci:
+  npmRepos:
+    - scope: '2'
+      registry: '1'
 cd:
   couchdb: "true"
-  profile: multizoneClusterSystem
+  profile: productionOnly
   config:
     all:
       envVars:

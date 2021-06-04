@@ -5,11 +5,6 @@
   "description": "Validations",
   "type": "object",
   "properties": {
-    "version": {
-      "type": "string",
-      "enum": ["v1"],
-      "description": "The version of the automation to execute"
-    },
     "builder": {
       "type": "string",
       "enum": ["npm", "poetry"],
@@ -30,7 +25,7 @@
       },
       "then": {
         "required": ["cd"],
-        "allOf": [{"$ref": "defs.json#/definitions/base"}],
+        "allOf": [{"$ref": "defs.json#/definitions/core"}],
         "properties": {
           "cd": {
             "properties": {
@@ -38,13 +33,14 @@
             },
             "required": ["schedule"]
           },
-          "slackChannel": true,
-          "artifactory": true,
-          "productionBranches": true,
-          "baseVersion": true,
           "builder": true,
           "type": true,
-          "version": true
+          "version": true,
+          "slackChannel": true,
+          "productionBranches": true,
+          "baseVersion": true,
+          "artifactory": true,
+          "ci": true
         },
         "additionalProperties": false
       }
@@ -54,28 +50,28 @@
         "properties": {"type": {"const": "library"}},
         "required": ["type"]
       },
-      "then": {"allOf": [{"$ref": "defs.json#/definitions/base"}]}
+      "then": {"allOf": [{"$ref": "defs.json#/definitions/core"}]}
     },
     {
       "if": {
         "properties": {"type": {"const": "microservice"}},
         "required": ["type"]
       },
-      "then": {"allOf": [{"$ref": "defs.json#/definitions/base"}]}
+      "then": {"allOf": [{"$ref": "defs.json#/definitions/core"}]}
     },
     {
       "if": {
         "properties": {"type": {"const": "grpc-microservice"}},
         "required": ["type"]
       },
-      "then": {"allOf": [{"$ref": "defs.json#/definitions/base"}]}
+      "then": {"allOf": [{"$ref": "defs.json#/definitions/core"}]}
     },
     {
       "if": {
         "properties": {"type": {"const": "user-interface"}},
         "required": ["type"]
       },
-      "then": {"allOf": [{"$ref": "defs.json#/definitions/base"}]}
+      "then": {"allOf": [{"$ref": "defs.json#/definitions/core"}]}
     }
   ]
 }

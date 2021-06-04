@@ -1,13 +1,18 @@
 {
   "$id": "foo",
   "$schema": "https://json-schema.org/draft-07/schema",
-  "title": "RRE Build Yml",
-  "description": "Definitions for top level stuff",
+  "title": "RRE Build Yml Definitions",
+  "description": "Definitions",
   "type": "object",
   "definitions": {
-    "base": {
+    "core": {
       "type": "object",
       "properties": {
+        "version": {
+          "type": "string",
+          "enum": ["v1"],
+          "description": "The version of the automation to execute"
+        },
         "slackChannel": {
           "type": "string",
           "description": "Slack channel where you want notifications to go to. No #",
@@ -42,8 +47,30 @@
         },
         "ci": {
           "type": "object",
-          "description": "WIP",
-          "properties": {"npmRepos": {"$ref": "#/definitions/npmRepos"}}
+          "description": "Continuos Integration",
+          "properties": {
+            "npmRepos": {
+              "description": "See https://github.ibm.com/w3-rre/w3-rre/wiki/NPM#npm-scoped-repositories",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "scope": {
+                    "type": "string",
+                    "description": "Eg: w3. Can not start with @.",
+                    "pattern": "^(?!@).+"
+                  },
+                  "registry": {
+                    "type": "string",
+                    "description": "Eg: https://na.artifactory.swg-devops.com/artifactory/api/npm/chq-dwe-w3-rre-npm-local. Can not end with /. ",
+                    "pattern": ".*(?<!/)$"
+                  }
+                },
+                "required": ["scope", "registry"]
+              }
+            }
+          },
+          "additionalProperties": false
         },
         "cd": {
           "description": "Continuous Deployment Parameters",
@@ -95,23 +122,6 @@
       "properties": {"envVars": {"type": "object"}},
       "additionalProperties": false,
       "required": ["envVars"]
-    },
-    "npmRepos": {"type": "array", "items": {"$ref": "#/definitions/npmRepo"}},
-    "npmRepo": {
-      "type": "object",
-      "properties": {
-        "scope": {
-          "type": "string",
-          "description": "Can not start with @",
-          "pattern": "^(?!@).+"
-        },
-        "registry": {
-          "type": "string",
-          "description": "Can not end with /",
-          "pattern": ".*(?<!/)$"
-        }
-      },
-      "required": ["scope", "registry"]
     }
   }
 }

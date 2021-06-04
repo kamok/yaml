@@ -9,5 +9,5 @@ artifactory:
 slackChannel: 'w3-aaa'
 ci:
   npmRepos:
-    - scope: 'foo'
-      registry: 'foo'
+    - scope: w3
+      registry: "https://na.artifactory.swg-devops.com/artifactory/api/npm/chq-dwe-w3-rre-npm-local"
