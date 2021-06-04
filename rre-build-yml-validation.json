@@ -20,6 +20,26 @@
   "allOf": [
     {
       "if": {
+        "properties": {"type": {"const": "library"}},
+        "required": ["type"]
+      },
+      "then": {
+        "allOf": [{"$ref": "defs.json#/definitions/core"}],
+        "properties": {
+          "builder": true,
+          "type": true,
+          "version": true,
+          "slackChannel": true,
+          "productionBranches": true,
+          "baseVersion": true,
+          "artifactory": true,
+          "ci": true
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "if": {
         "properties": {"type": {"const": "cronjob"}},
         "required": ["type"]
       },
@@ -44,13 +64,6 @@
         },
         "additionalProperties": false
       }
-    },
-    {
-      "if": {
-        "properties": {"type": {"const": "library"}},
-        "required": ["type"]
-      },
-      "then": {"allOf": [{"$ref": "defs.json#/definitions/core"}]}
     },
     {
       "if": {
