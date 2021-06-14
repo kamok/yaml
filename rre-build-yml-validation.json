@@ -12,7 +12,14 @@
     },
     "type": {
       "type": "string",
-      "enum": ["library", "cronjob", "microservice", "grpc-microservice", "user-interface", "process"],
+      "enum": [
+        "library",
+        "cronjob",
+        "microservice",
+        "grpc-microservice",
+        "user-interface",
+        "process"
+      ],
       "description": "Artifact type to build: https://github.ibm.com/w3-rre/w3-rre/wiki/Artifact-Types"
     }
   },
@@ -49,9 +56,23 @@
         "properties": {
           "cd": {
             "properties": {
-              "schedule": {"type": "string", "description": "Schedule in Lib"}
+              "couchdb": {
+                "allOf": [{"$ref": "defs.json#/definitions/cd.couchdb"}]
+              },
+              "profile": {
+                "allOf": [{"$ref": "defs.json#/definitions/cd.profile"}]
+              },
+              "config": {
+                "allOf": [{"$ref": "defs.json#/definitions/cd.config"}]
+              },
+              "schedule": {"type": "string", "description": "TODO"},
+              "schedules": {"type": "string", "description": "TODO"},
+              "cassandra": {
+                "allOf": [{"$ref": "defs.json#/definitions/cd.cassandra"}]
+              }
             },
-            "required": ["schedule"]
+            "required": ["schedule", "schedules"],
+            "additionalProperties": false
           },
           "builder": true,
           "type": true,

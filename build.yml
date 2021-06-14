@@ -1,5 +1,5 @@
 version: v1
-type: library
+type: cronjob
 builder: npm
 baseVersion: "1.0.0-alpha"
 productionBranches: [ 'master']
@@ -7,7 +7,8 @@ artifactory:
   apiKey: vault:1o0
   username: vault:1
 cd:
-  profile: multizoneClusterSystem
+  couchdb: "true"
+  profile: standard
   config:
     all:
       envVars:

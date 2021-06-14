@@ -7,3 +7,7 @@ Add to settings.json
         ]
     },
 ```
+
+Style:
+Duplication of definitions are placed in defs
+Singletons (such as schedule for cronjob), remain declared once
