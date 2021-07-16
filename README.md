@@ -1,13 +1,31 @@
-Add to settings.json
+### What?
+This is a validation schema that you can use to get validations for your build.yml for RRE. This makes it so you can catch build.yml configuration errors before you push code, wait 20 minutes, and have an error show up later and realize you missed a required attribute.
+
+Currently supports:
+1. library
+1. cronjob
+
+### How to use on VSCode:
+
+1. Download YAML extension on VSCode
+
+1. Add to settings.json
 ```
     "yaml.schemas": {
-        "/Users/kamok/Documents/code/yaml-validation-demo/rre-build-yml-validation.json": [
-            "*build.yml",
-            "yaml-test-references/**.yml"
+        "https://raw.githubusercontent.com/kamok/yaml/master/rre-build-yml-validation.json": [
+            "*build.yml"
+        ]
+    },
+```
+The above example means all files named build.yml opened with vscode. Adjust accordingly. You might want directory specific, such as...
+```
+    "yaml.schemas": {
+        "https://raw.githubusercontent.com/kamok/yaml/master/rre-build-yml-validation.json": [
+            "yaml-test-references/**.yml",
+            "cases/**.yml"
         ]
     },
 ```
 
-Style:
-Duplication of definitions are placed in defs
-Singletons (such as schedule for cronjob), remain declared once
+### How to use for other editors:
+1. Find a [json schema](https://json-schema.org/understanding-json-schema/index.html) compatible processor that can interpret Supports JSON Schema 7. A json schema is a standard, like ecma script. There are implementations that parses the file, and returns an output for the editor to consume.
