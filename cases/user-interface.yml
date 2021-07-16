@@ -1,0 +1,15 @@
+version: v1
+type: user-interface
+builder: npm
+baseVersion: "1.0.0-alpha"
+productionBranches: ['master']
+artifactory:
+  apiKey: vault:1o0
+  username: vault:1
+slackChannel: 'w3-aaa'
+ci:
+  npmRepos:
+    - scope: w3
+      registry: "https://na.artifactory.swg-devops.com/artifactory/api/npm/chq-dwe-w3-rre-npm-local"
+cd:
+  instances: "1"

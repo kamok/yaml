@@ -51,7 +51,6 @@
         "required": ["type"]
       },
       "then": {
-        "required": ["cd"],
         "allOf": [{"$ref": "defs.json#/definitions/core"}],
         "properties": {
           "cd": {
@@ -117,21 +116,117 @@
         "properties": {"type": {"const": "microservice"}},
         "required": ["type"]
       },
-      "then": {"allOf": [{"$ref": "defs.json#/definitions/core"}]}
+      "then": {
+        "allOf": [{"$ref": "defs.json#/definitions/core"}],
+        "properties": {
+          "cd": {
+            "description": "Requires property schedule or schedules",
+            "properties": {
+              "couchdb": {
+                "allOf": [{"$ref": "defs.json#/definitions/cd.couchdb"}]
+              },
+              "profile": {
+                "allOf": [{"$ref": "defs.json#/definitions/cd.profile"}]
+              },
+              "config": {
+                "allOf": [{"$ref": "defs.json#/definitions/cd.config"}]
+              },
+              "cassandra": {
+                "allOf": [{"$ref": "defs.json#/definitions/cd.cassandra"}]
+              },
+              "instances": {
+                "allOf": [{"$ref": "defs.json#/definitions/cd.instances"}]
+              }
+            },
+            "additionalProperties": false
+          },
+          "builder": true,
+          "type": true,
+          "version": true,
+          "slackChannel": true,
+          "productionBranches": true,
+          "baseVersion": true,
+          "artifactory": true,
+          "ci": true
+        },
+        "additionalProperties": false
+      }
     },
     {
       "if": {
         "properties": {"type": {"const": "grpc-microservice"}},
         "required": ["type"]
       },
-      "then": {"allOf": [{"$ref": "defs.json#/definitions/core"}]}
+      "then": {
+        "allOf": [{"$ref": "defs.json#/definitions/core"}],
+        "properties": {
+          "cd": {
+            "description": "Requires property schedule or schedules",
+            "properties": {
+              "couchdb": {
+                "allOf": [{"$ref": "defs.json#/definitions/cd.couchdb"}]
+              },
+              "profile": {
+                "allOf": [{"$ref": "defs.json#/definitions/cd.profile"}]
+              },
+              "config": {
+                "allOf": [{"$ref": "defs.json#/definitions/cd.config"}]
+              },
+              "cassandra": {
+                "allOf": [{"$ref": "defs.json#/definitions/cd.cassandra"}]
+              },
+              "instances": {
+                "allOf": [{"$ref": "defs.json#/definitions/cd.instances"}]
+              }
+            },
+            "additionalProperties": false
+          },
+          "builder": true,
+          "type": true,
+          "version": true,
+          "slackChannel": true,
+          "productionBranches": true,
+          "baseVersion": true,
+          "artifactory": true,
+          "ci": true
+        },
+        "additionalProperties": false
+      }
     },
     {
       "if": {
         "properties": {"type": {"const": "user-interface"}},
         "required": ["type"]
       },
-      "then": {"allOf": [{"$ref": "defs.json#/definitions/core"}]}
+      "then": {
+        "allOf": [{"$ref": "defs.json#/definitions/core"}],
+        "properties": {
+          "cd": {
+            "description": "Requires property schedule or schedules",
+            "properties": {
+              "profile": {
+                "allOf": [{"$ref": "defs.json#/definitions/cd.profile"}]
+              },
+              "config": {
+                "allOf": [{"$ref": "defs.json#/definitions/cd.config"}]
+              },
+              "instances": {
+                "allOf": [{"$ref": "defs.json#/definitions/cd.instances"}]
+              }
+            },
+            "additionalProperties": false
+          },
+          "builder": true,
+          "type": true,
+          "version": true,
+          "slackChannel": true,
+          "productionBranches": true,
+          "baseVersion": true,
+          "artifactory": true,
+          "ci": true
+        },
+        "additionalProperties": false
+      }
     }
   ]
 }

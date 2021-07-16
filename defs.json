@@ -117,6 +117,11 @@
       "description": "Whether you are using cassandra or not",
       "enum": ["yes"]
     },
+    "cd.instances": {
+      "type": "string",
+      "description": "Number of instances of your app to run, such as 2",
+      "pattern": "^\\d+$"
+    },
     "cdConfigEnvVars": {
       "type": "object",
       "properties": {"envVars": {"type": "object"}},

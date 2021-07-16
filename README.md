@@ -6,6 +6,8 @@ This is a validation schema that you can use to get validations for your build.y
 Currently supports:
 1. library
 1. cronjob
+1. microservice / grpc-microservice
+1. user-interface
 
 ### How to use on VSCode:
 
@@ -28,6 +30,7 @@ The above example means all files named build.yml opened with vscode. Adjust acc
         ]
     },
 ```
+1. Due to a bug in the yaml extensions, you need to manually trigger autocomplete with CONTROL + SPACE on fields (rather than it magically)
 
 ### How to use for other editors:
 1. Find a [json schema](https://json-schema.org/understanding-json-schema/index.html) compatible processor that can interpret Supports JSON Schema 7. A json schema is a standard, like ecma script. There are implementations that parses the file, and returns an output for the editor to consume.
