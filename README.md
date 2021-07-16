@@ -1,3 +1,5 @@
+![Demo of JSON Schema using VSCode](https://user-images.githubusercontent.com/9758567/125991671-f2b7104c-5439-4d2b-a22b-c28e4af4df92.mov)
+
 ### What?
 This is a validation schema that you can use to get validations for your build.yml for RRE. This makes it so you can catch build.yml configuration errors before you push code, wait 20 minutes, and have an error show up later and realize you missed a required attribute.
 
