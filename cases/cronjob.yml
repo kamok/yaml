@@ -20,5 +20,11 @@ cd:
     production:
       envVars:
         Foo: 1
-  schedule: 'xx'
+  schedules:
+    - name: first
+      timing: "0 0 2 * *"
+      script: first.sh
+    - name: second
+      timing: "0 0 3 * *"
+      script: app.js
 slackChannel: 'w3-aaa'

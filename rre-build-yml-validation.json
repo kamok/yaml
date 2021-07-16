@@ -55,6 +55,7 @@
         "allOf": [{"$ref": "defs.json#/definitions/core"}],
         "properties": {
           "cd": {
+            "description": "Requires property schedule or schedules",
             "properties": {
               "couchdb": {
                 "allOf": [{"$ref": "defs.json#/definitions/cd.couchdb"}]
@@ -65,13 +66,38 @@
               "config": {
                 "allOf": [{"$ref": "defs.json#/definitions/cd.config"}]
               },
-              "schedule": {"type": "string", "description": "TODO"},
-              "schedules": {"type": "string", "description": "TODO"},
+              "schedule": {
+                "type": "string",
+                "description": "A valid cron time, such as 0 0 * * * (every day at 12:00 AM). https://crontab.cronhub.io/"
+              },
+              "schedules": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "name of your script, try to keep it short due to character limit",
+                      "pattern": "^(?!@).+"
+                    },
+                    "timing": {
+                      "type": "string",
+                      "description": "Eg: https://na.artifactory.swg-devops.com/artifactory/api/npm/chq-dwe-w3-rre-npm-local. Can not end with /. ",
+                      "pattern": ".*(?<!/)$"
+                    },
+                    "script": {
+                      "type": "string",
+                      "description": "script to run, eg: foo.js or bar.sh"
+                    }
+                  },
+                  "required": ["name", "timing", "script"]
+                }
+              },
               "cassandra": {
                 "allOf": [{"$ref": "defs.json#/definitions/cd.cassandra"}]
               }
             },
-            "required": ["schedule", "schedules"],
+            "oneOf": [{"required": ["schedule"]}, {"required": ["schedules"]}],
             "additionalProperties": false
           },
           "builder": true,
